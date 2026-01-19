@@ -1,0 +1,107 @@
+/* === Reset === */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* === Base === */
+html, body {
+  height: 100%;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* === Terminal Container === */
+#terminal {
+  max-width: 800px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+/* === Output Sections === */
+.output-section {
+  margin: 8px 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.output-command {
+  display: flex;
+  gap: 8px;
+}
+
+/* === Input Line === */
+#input-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 4px;
+}
+
+/* === Prompt === */
+.prompt {
+  white-space: nowrap;
+  color: var(--text-color);
+}
+
+.prompt-user,
+.prompt-host {
+  color: var(--prompt-color);
+}
+
+/* === Command Text === */
+.command-text {
+  color: var(--input-color);
+  min-width: 0;
+  word-wrap: break-word;
+}
+
+/* === Command Input === */
+#command-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font: inherit;
+  color: var(--input-color);
+  caret-color: var(--accent-color);
+}
+
+/* === Links === */
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* === Selection === */
+::selection {
+  background-color: var(--selection-color);
+}
+
+/* === ASCII Art === */
+.ascii-art {
+  color: var(--accent-color);
+  font-size: 0.85em;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  html, body {
+    font-size: 14px;
+  }
+
+  #terminal {
+    padding: 16px;
+  }
+}

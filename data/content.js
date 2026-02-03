@@ -1,0 +1,43 @@
+export const content = {
+  name: "Matthew Tchouikine",
+  tagline: "CS & Pure Math @ University of Waterloo",
+  ascii: [
+    " __  __       _   _   _                   ",
+    "|  \\/  | __ _| |_| |_| |__   _____      __",
+    "| |\\/| |/ _` | __| __| '_ \\ / _ \\\\ \\ /\\ / /",
+    "| |  | | (_| | |_| |_| | | |  __/\\\\ V  V / ",
+    "|_|  |_|\\__,_|\\__|\\__|_| |_|\\___| \\_/\\_/  ",
+  ],
+  about: [
+    "Hey! I'm Matthew, a student at the University of Waterloo",
+    "pursuing a joint degree in Computer Science and Pure Mathematics (3B).",
+    "",
+    "I'm passionate about C++, currently building a mobile app with Expo",
+    "React Native, learning Neovim, and using Typst as a modern LaTeX",
+    "alternative for note-taking.",
+  ],
+  projects: [
+    { name: "Moodify", description: "AI-powered journaling platform using Next.js and OpenAI to foster reflection, positive thinking, and personalized insights.", language: "TypeScript", url: "https://github.com/matt4tch/Moodify" },
+    { name: "UniConnect", description: "Application that connects university students to a common study area based on their tastes and preferences.", language: "JavaScript", url: "https://github.com/matt4tch/UniConnect" },
+    { name: "Chess", description: "Chess game with text and graphical displays, customizable modes, and AI opponents.", language: "C++", url: "https://github.com/matt4tch/Chess" },
+    { name: "Roboadvisor", description: "High-risk portfolio optimizer selecting stocks by correlation and volatility.", language: "Python", url: "https://github.com/matt4tch/Roboadvisor" },
+  ],
+  education: { university: "University of Waterloo", degree: "Joint Honours Computer Science & Pure Mathematics", term: "3B" },
+  socials: [
+    { name: "GitHub", url: "https://github.com/matt4tch" },
+    { name: "LinkedIn", url: "https://linkedin.com/in/matthew-tchouikine" },
+    { name: "Email", url: "mailto:matthew4.tch@gmail.com" },
+  ],
+  resumeSummary: [
+    "Matthew Tchouikine",
+    "Joint Honours CS & Pure Mathematics — University of Waterloo (3B)",
+    "",
+    "Skills: C++, TypeScript, JavaScript, Python, React, Next.js, React Native",
+    "",
+    "Projects:",
+    "  - Moodify — AI-powered journaling platform (TypeScript, Next.js, OpenAI)",
+    "  - UniConnect — University student connection app (JavaScript)",
+    "  - Chess — Chess game with AI opponents (C++)",
+    "  - Roboadvisor — Portfolio optimizer (Python)",
+  ],
+};

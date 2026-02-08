@@ -5,6 +5,8 @@ class Terminal {
     this.output = document.getElementById('output');
     this.input = document.getElementById('command-input');
     this.terminal = document.getElementById('terminal');
+    this.history = [];
+    this.historyIndex = -1;
     this.init();
   }
 
@@ -17,8 +19,18 @@ class Terminal {
   }
 
   handleKeyDown(e) {
-    if (e.key === 'Enter') {
-      this.handleCommand();
+    switch (e.key) {
+      case 'Enter':
+        this.handleCommand();
+        break;
+      case 'ArrowUp':
+        e.preventDefault();
+        this.navigateHistory(-1);
+        break;
+      case 'ArrowDown':
+        e.preventDefault();
+        this.navigateHistory(1);
+        break;
     }
   }
 
@@ -32,12 +44,20 @@ class Terminal {
       return;
     }
 
+    this.history.push(raw);
+    this.historyIndex = -1;
+
     const parts = raw.split(/\s+/);
     const commandName = parts[0].toLowerCase();
     const args = parts.slice(1);
 
     if (commandName === 'clear') {
       this.output.innerHTML = '';
+      return;
+    }
+
+    if (commandName === 'history') {
+      this.appendOutput(this.getHistoryOutput());
       return;
     }
 
@@ -66,6 +86,37 @@ class Terminal {
     div.innerHTML = html;
     this.output.appendChild(div);
     this.scrollToBottom();
+  }
+
+  navigateHistory(direction) {
+    if (this.history.length === 0) return;
+
+    if (direction === -1) {
+      if (this.historyIndex === -1) {
+        this.historyIndex = this.history.length - 1;
+      } else if (this.historyIndex > 0) {
+        this.historyIndex--;
+      }
+      this.input.value = this.history[this.historyIndex];
+    } else if (direction === 1) {
+      if (this.historyIndex === -1) return;
+      if (this.historyIndex < this.history.length - 1) {
+        this.historyIndex++;
+        this.input.value = this.history[this.historyIndex];
+      } else {
+        this.historyIndex = -1;
+        this.input.value = '';
+      }
+    }
+  }
+
+  getHistoryOutput() {
+    if (this.history.length === 0) {
+      return 'No commands in history.';
+    }
+    return this.history
+      .map((cmd, i) => `  ${i + 1}  ${this.escapeHtml(cmd)}`)
+      .join('\n');
   }
 
   scrollToBottom() {

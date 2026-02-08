@@ -38,4 +38,19 @@ export const commands = {
     });
     return rows.join('<br>');
   },
+
+  about(args) {
+    return content.about
+      .map((line) => (line === '' ? '&nbsp;' : line))
+      .join('<br>');
+  },
+
+  education(args) {
+    const e = content.education;
+    return [
+      `<span style="color: var(--accent-color)">${e.university}</span>`,
+      e.degree,
+      `Term: ${e.term}`,
+    ].join('<br>');
+  },
 };

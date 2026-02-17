@@ -53,4 +53,84 @@ export const commands = {
       `Term: ${e.term}`,
     ].join('<br>');
   },
+
+  projects(args) {
+    if (args[0] === 'go' && args[1]) {
+      const idx = parseInt(args[1], 10) - 1;
+      if (isNaN(idx) || idx < 0 || idx >= content.projects.length) {
+        return `Invalid project number. Please enter a number between 1 and ${content.projects.length}.`;
+      }
+      window.open(content.projects[idx].url, '_blank');
+      return `Opening ${content.projects[idx].name} in a new tab...`;
+    }
+
+    const maxName = Math.max(...content.projects.map((p) => p.name.length));
+    const lines = ['My pinned projects:', ''];
+
+    content.projects.forEach((project, i) => {
+      const num = `${i + 1}.`;
+      const name = project.name.padEnd(maxName + 2);
+      lines.push(
+        `  ${num} <span style="color: var(--accent-color)">${name}</span> ${project.description} <span style="color: var(--link-color)">[${project.language}]</span>`
+      );
+    });
+
+    lines.push('');
+    lines.push('Usage: projects go &lt;number&gt;');
+    lines.push('eg: projects go 1');
+
+    return lines.join('<br>');
+  },
+
+  socials(args) {
+    if (args[0] === 'go' && args[1]) {
+      const idx = parseInt(args[1], 10) - 1;
+      if (isNaN(idx) || idx < 0 || idx >= content.socials.length) {
+        return `Invalid social number. Please enter a number between 1 and ${content.socials.length}.`;
+      }
+      window.open(content.socials[idx].url, '_blank');
+      return `Opening ${content.socials[idx].name} in a new tab...`;
+    }
+
+    const maxName = Math.max(...content.socials.map((s) => s.name.length));
+    const lines = ['My social links:', ''];
+
+    content.socials.forEach((social, i) => {
+      const num = `${i + 1}.`;
+      const name = social.name.padEnd(maxName + 2);
+      const displayUrl = social.url.replace(/^mailto:/, '');
+      lines.push(
+        `  ${num} <span style="color: var(--accent-color)">${name}</span> ${displayUrl}`
+      );
+    });
+
+    lines.push('');
+    lines.push('Usage: socials go &lt;social-no&gt;');
+    lines.push('eg: socials go 1');
+
+    return lines.join('<br>');
+  },
+
+  resume(args) {
+    if (args[0] === 'download') {
+      const a = document.createElement('a');
+      a.href = 'assets/resume.pdf';
+      a.download = 'Matthew_Tchouikine_Resume.pdf';
+      a.style.display = 'none';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      return 'Downloading resume...';
+    }
+
+    const lines = content.resumeSummary.map((line) =>
+      line === '' ? '&nbsp;' : line
+    );
+    lines.push('');
+    lines.push(
+      `Type '<span style="color: var(--accent-color)">resume download</span>' to download the full PDF.`
+    );
+
+    return lines.join('<br>');
+  },
 };

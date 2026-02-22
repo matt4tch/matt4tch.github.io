@@ -1,7 +1,7 @@
 import { content } from '../data/content.js';
 
 export const commands = {
-  welcome(args) {
+  welcome(args, animate = false) {
     const lines = [];
     for (const artLine of content.ascii) {
       lines.push(`<span class="ascii-art">${artLine}</span>`);
@@ -12,6 +12,10 @@ export const commands = {
     lines.push(
       `Type '<span style="color: var(--accent-color)">help</span>' to see available commands.`
     );
+
+    if (animate) {
+      return lines.map((l) => `<div class="typing-line">${l}</div>`).join('');
+    }
     return lines.join('<br>');
   },
 

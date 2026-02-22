@@ -105,3 +105,13 @@ a:hover {
     padding: 16px;
   }
 }
+
+/* === Welcome Typing Animation === */
+.typing-line {
+  opacity: 0;
+  transition: opacity 0.1s ease-in;
+}
+
+.typing-line.visible {
+  opacity: 1;
+}

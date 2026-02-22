@@ -7,14 +7,14 @@ class Terminal {
     this.terminal = document.getElementById('terminal');
     this.history = [];
     this.historyIndex = -1;
+    this.animationTimers = [];
     this.init();
   }
 
   init() {
     this.input.addEventListener('keydown', (e) => this.handleKeyDown(e));
     this.terminal.addEventListener('click', () => this.input.focus());
-    const welcomeHtml = commands.welcome([]);
-    if (welcomeHtml) this.appendOutput(welcomeHtml);
+    this.executeWelcome(true);
     this.input.focus();
   }
 
@@ -30,6 +30,10 @@ class Terminal {
       case 'ArrowDown':
         e.preventDefault();
         this.navigateHistory(1);
+        break;
+      case 'Tab':
+        e.preventDefault();
+        this.autoComplete();
         break;
     }
   }
@@ -52,6 +56,7 @@ class Terminal {
     const args = parts.slice(1);
 
     if (commandName === 'clear') {
+      this.clearPendingAnimations();
       this.output.innerHTML = '';
       return;
     }
@@ -88,6 +93,30 @@ class Terminal {
     this.scrollToBottom();
   }
 
+  executeWelcome(animate) {
+    const html = commands.welcome([], animate);
+
+    if (animate) {
+      const container = document.createElement('div');
+      container.classList.add('output-section');
+      container.innerHTML = html;
+      this.output.appendChild(container);
+
+      const lines = container.querySelectorAll('.typing-line');
+      lines.forEach((line, i) => {
+        const tid = setTimeout(() => {
+          line.classList.add('visible');
+        }, i * 80);
+        this.animationTimers.push(tid);
+      });
+
+      const scrollTid = setTimeout(() => this.scrollToBottom(), lines.length * 80);
+      this.animationTimers.push(scrollTid);
+    } else {
+      this.appendOutput(html);
+    }
+  }
+
   navigateHistory(direction) {
     if (this.history.length === 0) return;
 
@@ -110,6 +139,23 @@ class Terminal {
     }
   }
 
+  autoComplete() {
+    const value = this.input.value;
+    const parts = value.split(/\s+/);
+
+    if (parts.length > 1) return;
+
+    const partial = parts[0].toLowerCase();
+    if (!partial) return;
+
+    const allCommands = [...Object.keys(commands), 'clear', 'history'];
+    const matches = allCommands.filter((cmd) => cmd.startsWith(partial));
+
+    if (matches.length === 1) {
+      this.input.value = matches[0];
+    }
+  }
+
   getHistoryOutput() {
     if (this.history.length === 0) {
       return 'No commands in history.';
@@ -117,6 +163,11 @@ class Terminal {
     return this.history
       .map((cmd, i) => `  ${i + 1}  ${this.escapeHtml(cmd)}`)
       .join('\n');
+  }
+
+  clearPendingAnimations() {
+    this.animationTimers.forEach((tid) => clearTimeout(tid));
+    this.animationTimers = [];
   }
 
   scrollToBottom() {

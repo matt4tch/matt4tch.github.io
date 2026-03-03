@@ -1,4 +1,5 @@
 import { commands } from './commands.js';
+import { initTheme } from './themes.js';
 
 class Terminal {
   constructor() {
@@ -14,6 +15,7 @@ class Terminal {
   init() {
     this.input.addEventListener('keydown', (e) => this.handleKeyDown(e));
     this.terminal.addEventListener('click', () => this.input.focus());
+    initTheme();
     this.executeWelcome(true);
     this.input.focus();
   }

@@ -1,4 +1,5 @@
 import { content } from '../data/content.js';
+import { getThemeList, setTheme } from './themes.js';
 
 export const commands = {
   welcome(args, animate = false) {
@@ -27,6 +28,7 @@ export const commands = {
       ['education', 'My academic background'],
       ['resume', 'View my resume'],
       ['socials', 'My social links'],
+      ['themes', 'Change the terminal theme'],
       ['history', 'Show command history'],
       ['clear', 'Clear the terminal'],
     ];
@@ -136,5 +138,12 @@ export const commands = {
     );
 
     return lines.join('<br>');
+  },
+
+  themes(args) {
+    if (args[0] === 'set' && args[1]) {
+      return setTheme(parseInt(args[1], 10));
+    }
+    return getThemeList();
   },
 };

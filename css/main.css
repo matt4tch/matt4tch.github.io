@@ -10,7 +10,7 @@
 /* === Base === */
 html, body {
   height: 100%;
-  background-color: var(--bg-color);
+  background-color: var(--body-bg, #111111);
   color: var(--text-color);
   font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
   font-size: 16px;
@@ -19,10 +19,57 @@ html, body {
 
 /* === Terminal Container === */
 #terminal {
-  max-width: 800px;
-  margin: 0 auto;
-  min-height: 100vh;
-  padding: 24px;
+  max-width: 850px;
+  margin: 32px auto;
+  background-color: var(--bg-color);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  min-height: calc(100vh - 64px);
+}
+
+/* === Title Bar === */
+#title-bar {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  background-color: var(--titlebar-bg, var(--selection-color));
+  user-select: none;
+}
+
+.title-bar-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.dot-red { background-color: #ff5f57; }
+.dot-yellow { background-color: #febc2e; }
+.dot-green { background-color: #28c840; }
+
+.title-bar-text {
+  flex: 1;
+  text-align: center;
+  font-size: 0.8em;
+  color: var(--text-color);
+  opacity: 0.6;
+  margin-right: 52px;
+}
+
+/* === Terminal Content === */
+#output,
+#input-line {
+  margin-left: 24px;
+  margin-right: 24px;
+}
+
+#output {
+  padding-top: 16px;
 }
 
 /* === Output Sections === */
@@ -43,6 +90,7 @@ html, body {
   align-items: center;
   gap: 8px;
   padding-top: 4px;
+  padding-bottom: 24px;
 }
 
 /* === Prompt === */
@@ -95,17 +143,6 @@ a:hover {
   font-size: 0.85em;
 }
 
-/* === Responsive === */
-@media (max-width: 768px) {
-  html, body {
-    font-size: 14px;
-  }
-
-  #terminal {
-    padding: 16px;
-  }
-}
-
 /* === Welcome Typing Animation === */
 .typing-line {
   opacity: 0;
@@ -114,4 +151,24 @@ a:hover {
 
 .typing-line.visible {
   opacity: 1;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  html, body {
+    font-size: 14px;
+  }
+
+  #terminal {
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    min-height: 100vh;
+  }
+
+  #output,
+  #input-line {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
 }

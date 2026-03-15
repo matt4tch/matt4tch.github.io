@@ -1,5 +1,7 @@
 :root {
+  --body-bg: #1a0514;
   --bg-color: #300a24;
+  --titlebar-bg: #2a0820;
   --text-color: #eeeeec;
   --prompt-color: #8ae234;
   --accent-color: #8ae234;

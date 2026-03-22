@@ -173,7 +173,7 @@ class Terminal {
   }
 
   scrollToBottom() {
-    window.scrollTo(0, document.body.scrollHeight);
+    const body = document.getElementById('terminal-body'); body.scrollTop = body.scrollHeight;
   }
 
   escapeHtml(str) {

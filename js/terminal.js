@@ -21,6 +21,41 @@ class Terminal {
   }
 
   handleKeyDown(e) {
+    if (e.ctrlKey) {
+      switch (e.key) {
+        case 'c':
+          e.preventDefault();
+          this.appendPromptLine(this.input.value + '^C');
+          this.input.value = '';
+          this.historyIndex = -1;
+          this.scrollToBottom();
+          break;
+        case 'l':
+          e.preventDefault();
+          this.clearPendingAnimations();
+          this.output.innerHTML = '';
+          break;
+        case 'u':
+          e.preventDefault();
+          this.input.value = this.input.value.substring(this.input.selectionStart);
+          this.input.setSelectionRange(0, 0);
+          break;
+        case 'k':
+          e.preventDefault();
+          this.input.value = this.input.value.substring(0, this.input.selectionStart);
+          break;
+        case 'a':
+          e.preventDefault();
+          this.input.setSelectionRange(0, 0);
+          break;
+        case 'e':
+          e.preventDefault();
+          this.input.setSelectionRange(this.input.value.length, this.input.value.length);
+          break;
+      }
+      return;
+    }
+
     switch (e.key) {
       case 'Enter':
         this.handleCommand();
@@ -173,7 +208,8 @@ class Terminal {
   }
 
   scrollToBottom() {
-    const body = document.getElementById('terminal-body'); body.scrollTop = body.scrollHeight;
+    const body = document.getElementById('terminal-body');
+    body.scrollTop = body.scrollHeight;
   }
 
   escapeHtml(str) {

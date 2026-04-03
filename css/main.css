@@ -61,7 +61,7 @@ html, body {
   font-size: 0.8em;
   color: var(--text-color);
   opacity: 0.6;
-  margin-right: 52px;
+  margin-right: 52px; /* offset for dot width to center text */
 }
 
 /* === Terminal Body (scrollable area) === */
@@ -99,6 +99,7 @@ html, body {
 /* === Input Line === */
 #input-line {
   display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 8px;
   padding-top: 4px;
@@ -116,22 +117,58 @@ html, body {
   color: var(--prompt-color);
 }
 
-/* === Command Text === */
+/* === Command Text (in output) === */
 .command-text {
   color: var(--input-color);
   min-width: 0;
   word-wrap: break-word;
 }
 
-/* === Command Input === */
-#command-input {
+/* === Custom Block Cursor === */
+#input-wrapper {
+  position: relative;
   flex: 1;
+}
+
+#command-input {
+  width: 100%;
   background: transparent;
   border: none;
   outline: none;
   font: inherit;
   color: var(--input-color);
-  caret-color: var(--accent-color);
+  caret-color: transparent;
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+#cursor-block {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  pointer-events: none;
+  background-color: var(--accent-color);
+  opacity: 0.7;
+  height: 1.2em;
+  width: 0.6em;
+  animation: blink 1s step-end infinite;
+}
+
+/* Normal mode: solid, no blink */
+#cursor-block.normal {
+  animation: none;
+  opacity: 0.7;
+}
+
+/* === Vim Mode Indicator === */
+#vim-mode {
+  color: var(--accent-color);
+  font-size: 0.85em;
+  white-space: nowrap;
 }
 
 /* === Links === */

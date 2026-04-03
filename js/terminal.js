@@ -1,26 +1,69 @@
 import { commands } from './commands.js';
 import { initTheme } from './themes.js';
+import { VimMode } from './vim.js';
 
 class Terminal {
   constructor() {
     this.output = document.getElementById('output');
     this.input = document.getElementById('command-input');
     this.terminal = document.getElementById('terminal');
+    this.modeIndicator = document.getElementById('vim-mode');
+    this.cursorBlock = document.getElementById('cursor-block');
     this.history = [];
     this.historyIndex = -1;
     this.animationTimers = [];
+    this.charWidth = this.measureCharWidth();
+    this.vimActivated = false;
+    this.vim = new VimMode(this.input, (mode) => this.onVimModeChange(mode));
     this.init();
   }
 
   init() {
     this.input.addEventListener('keydown', (e) => this.handleKeyDown(e));
+    this.input.addEventListener('input', () => this.updateCursor());
+    this.input.addEventListener('click', () => this.updateCursor());
+    this.input.addEventListener('select', () => this.updateCursor());
     this.terminal.addEventListener('click', () => this.input.focus());
     initTheme();
     this.executeWelcome(true);
     this.input.focus();
+    this.updateCursor();
+  }
+
+  measureCharWidth() {
+    const span = document.createElement('span');
+    span.style.font = getComputedStyle(this.input).font;
+    span.style.visibility = 'hidden';
+    span.style.position = 'absolute';
+    span.textContent = 'M';
+    document.body.appendChild(span);
+    const width = span.getBoundingClientRect().width;
+    document.body.removeChild(span);
+    return width;
+  }
+
+  updateCursor() {
+    requestAnimationFrame(() => {
+      const pos = this.input.selectionStart || 0;
+      this.cursorBlock.style.left = `${pos * this.charWidth}px`;
+      this.cursorBlock.classList.toggle('normal', this.vim.isNormal);
+    });
+  }
+
+  onVimModeChange(mode) {
+    if (mode === 'normal') this.vimActivated = true;
+    this.modeIndicator.textContent = this.vimActivated ? (mode === 'normal' ? '[N]' : '[I]') : '';
+    this.input.dataset.vimMode = mode;
+    this.updateCursor();
   }
 
   handleKeyDown(e) {
+    // Vim handles Escape and all normal-mode keys
+    if (this.vim.handle(e)) {
+      this.updateCursor();
+      return;
+    }
+
     if (e.ctrlKey) {
       switch (e.key) {
         case 'c':
@@ -53,6 +96,7 @@ class Terminal {
           this.input.setSelectionRange(this.input.value.length, this.input.value.length);
           break;
       }
+      this.updateCursor();
       return;
     }
 
@@ -73,12 +117,14 @@ class Terminal {
         this.autoComplete();
         break;
     }
+    this.updateCursor();
   }
 
   handleCommand() {
     const raw = this.input.value.trim();
     this.appendPromptLine(raw);
     this.input.value = '';
+    this.vim.setMode('insert');
 
     if (!raw) {
       this.scrollToBottom();
@@ -158,6 +204,7 @@ class Terminal {
     if (this.history.length === 0) return;
 
     if (direction === -1) {
+      // Going back in history
       if (this.historyIndex === -1) {
         this.historyIndex = this.history.length - 1;
       } else if (this.historyIndex > 0) {
@@ -165,6 +212,7 @@ class Terminal {
       }
       this.input.value = this.history[this.historyIndex];
     } else if (direction === 1) {
+      // Going forward in history
       if (this.historyIndex === -1) return;
       if (this.historyIndex < this.history.length - 1) {
         this.historyIndex++;
@@ -180,6 +228,7 @@ class Terminal {
     const value = this.input.value;
     const parts = value.split(/\s+/);
 
+    // Only autocomplete the first word (command name)
     if (parts.length > 1) return;
 
     const partial = parts[0].toLowerCase();

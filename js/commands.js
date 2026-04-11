@@ -4,9 +4,11 @@ import { getThemeList, setTheme } from './themes.js';
 export const commands = {
   welcome(args, animate = false) {
     const lines = [];
+
     for (const artLine of content.ascii) {
       lines.push(`<span class="ascii-art">${artLine}</span>`);
     }
+
     lines.push('');
     lines.push(content.tagline);
     lines.push('');
@@ -28,20 +30,28 @@ export const commands = {
       ['education', 'My academic background'],
       ['resume', 'View my resume'],
       ['socials', 'My social links'],
+      ['notes', 'My course notes'],
       ['themes', 'Change the terminal theme'],
       ['history', 'Show command history'],
       ['clear', 'Clear the terminal'],
     ];
+
     const maxLen = Math.max(...cmds.map(([name]) => name.length));
     const headerName = 'Command'.padEnd(maxLen + 2);
+    const headerDesc = 'Description';
     const separatorName = '-------'.padEnd(maxLen + 2);
+    const separatorDesc = '-----------';
+
     const rows = [
-      `  <span style="color: var(--accent-color)">${headerName}</span> Description`,
-      `  ${separatorName} -----------`,
+      `  <span style="color: var(--accent-color)">${headerName}</span> ${headerDesc}`,
+      `  ${separatorName} ${separatorDesc}`,
     ];
+
     cmds.forEach(([name, desc]) => {
-      rows.push(`  <span style="color: var(--accent-color)">${name.padEnd(maxLen + 2)}</span> ${desc}`);
+      const padded = name.padEnd(maxLen + 2);
+      rows.push(`  <span style="color: var(--accent-color)">${padded}</span> ${desc}`);
     });
+
     return rows.join('<br>');
   },
 
@@ -49,15 +59,6 @@ export const commands = {
     return content.about
       .map((line) => (line === '' ? '&nbsp;' : line))
       .join('<br>');
-  },
-
-  education(args) {
-    const e = content.education;
-    return [
-      `<span style="color: var(--accent-color)">${e.university}</span>`,
-      e.degree,
-      `Term: ${e.term}`,
-    ].join('<br>');
   },
 
   projects(args) {
@@ -88,6 +89,38 @@ export const commands = {
     return lines.join('<br>');
   },
 
+  education(args) {
+    const lines = [
+      `<span style="color: var(--accent-color)">${content.education.university}</span>`,
+      content.education.degree,
+      `Term: ${content.education.term}`,
+    ];
+    return lines.join('<br>');
+  },
+
+  resume(args) {
+    if (args[0] === 'download') {
+      const a = document.createElement('a');
+      a.href = 'assets/resume.pdf';
+      a.download = 'Matthew_Tchouikine_Resume.pdf';
+      a.style.display = 'none';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      return 'Downloading resume...';
+    }
+
+    const lines = content.resumeSummary.map((line) =>
+      line === '' ? '&nbsp;' : line
+    );
+    lines.push('');
+    lines.push(
+      `Type '<span style="color: var(--accent-color)">resume download</span>' to download the full PDF.`
+    );
+
+    return lines.join('<br>');
+  },
+
   socials(args) {
     if (args[0] === 'go' && args[1]) {
       const idx = parseInt(args[1], 10) - 1;
@@ -111,31 +144,36 @@ export const commands = {
     });
 
     lines.push('');
-    lines.push('Usage: socials go &lt;social-no&gt;');
+    lines.push('Usage: socials go &lt;number&gt;');
     lines.push('eg: socials go 1');
 
     return lines.join('<br>');
   },
 
-  resume(args) {
-    if (args[0] === 'download') {
-      const a = document.createElement('a');
-      a.href = 'assets/resume.pdf';
-      a.download = 'Matthew_Tchouikine_Resume.pdf';
-      a.style.display = 'none';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      return 'Downloading resume...';
+  notes(args) {
+    if (args[0] === 'go' && args[1]) {
+      const idx = parseInt(args[1], 10) - 1;
+      if (isNaN(idx) || idx < 0 || idx >= content.notes.length) {
+        return `Invalid note number. Please enter a number between 1 and ${content.notes.length}.`;
+      }
+      window.open(content.notes[idx].file, '_blank');
+      return `Opening ${content.notes[idx].name} in a new tab...`;
     }
 
-    const lines = content.resumeSummary.map((line) =>
-      line === '' ? '&nbsp;' : line
-    );
+    const maxName = Math.max(...content.notes.map((n) => n.name.length));
+    const lines = ['My course notes:', ''];
+
+    content.notes.forEach((note, i) => {
+      const num = `${i + 1}.`;
+      const name = note.name.padEnd(maxName + 2);
+      lines.push(
+        `  ${num} <span style="color: var(--accent-color)">${name}</span> ${note.description}`
+      );
+    });
+
     lines.push('');
-    lines.push(
-      `Type '<span style="color: var(--accent-color)">resume download</span>' to download the full PDF.`
-    );
+    lines.push('Usage: notes go &lt;number&gt;');
+    lines.push('eg: notes go 1');
 
     return lines.join('<br>');
   },

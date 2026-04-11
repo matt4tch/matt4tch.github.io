@@ -17,16 +17,44 @@ export const content = {
     "alternative for note-taking.",
   ],
   projects: [
-    { name: "Moodify", description: "AI-powered journaling platform using Next.js and OpenAI to foster reflection, positive thinking, and personalized insights.", language: "TypeScript", url: "https://github.com/matt4tch/Moodify" },
-    { name: "UniConnect", description: "Application that connects university students to a common study area based on their tastes and preferences.", language: "JavaScript", url: "https://github.com/matt4tch/UniConnect" },
-    { name: "Chess", description: "Chess game with text and graphical displays, customizable modes, and AI opponents.", language: "C++", url: "https://github.com/matt4tch/Chess" },
-    { name: "Roboadvisor", description: "High-risk portfolio optimizer selecting stocks by correlation and volatility.", language: "Python", url: "https://github.com/matt4tch/Roboadvisor" },
+    {
+      name: "Moodify",
+      description: "AI-powered journaling platform using Next.js and OpenAI to foster reflection, positive thinking, and personalized insights.",
+      language: "TypeScript",
+      url: "https://github.com/matt4tch/Moodify",
+    },
+    {
+      name: "UniConnect",
+      description: "Application that connects university students to a common study area based on their tastes and preferences.",
+      language: "JavaScript",
+      url: "https://github.com/matt4tch/UniConnect",
+    },
+    {
+      name: "Chess",
+      description: "Chess game with text and graphical displays, customizable modes, and AI opponents.",
+      language: "C++",
+      url: "https://github.com/matt4tch/Chess",
+    },
+    {
+      name: "Roboadvisor",
+      description: "High-risk portfolio optimizer selecting stocks by correlation and volatility.",
+      language: "Python",
+      url: "https://github.com/matt4tch/Roboadvisor",
+    },
   ],
-  education: { university: "University of Waterloo", degree: "Joint Honours Computer Science & Pure Mathematics", term: "3B" },
+  education: {
+    university: "University of Waterloo",
+    degree: "Joint Honours Computer Science & Pure Mathematics",
+    term: "3B",
+  },
   socials: [
     { name: "GitHub", url: "https://github.com/matt4tch" },
     { name: "LinkedIn", url: "https://linkedin.com/in/matthew-tchouikine" },
     { name: "Email", url: "mailto:matthew4.tch@gmail.com" },
+  ],
+  notes: [
+    { name: "PMATH 367", description: "Rings and Modules", file: "assets/pmath367.pdf" },
+    { name: "PMATH 347", description: "Groups and Rings", file: "assets/pmath347.pdf" },
   ],
   resumeSummary: [
     "Matthew Tchouikine",

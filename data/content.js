@@ -18,6 +18,18 @@ export const content = {
   ],
   projects: [
     {
+      name: "SAT Sudoku Solver",
+      description: "C++ Sudoku solver using SAT encoding, MiniSAT, and benchmark comparisons between minimal and extended CNF formulations.",
+      language: "C++",
+      url: "https://github.com/matt4tch/sat-sudoku-solver",
+    },
+    {
+      name: "WLP4 Compiler",
+      description: "Standalone compiler for a small C-like language with scanning, SLR parsing, semantic analysis, and MIPS code generation.",
+      language: "C++20",
+      url: "https://github.com/matt4tch/wlp4-compiler",
+    },
+    {
       name: "Moodify",
       description: "AI-powered journaling platform using Next.js and OpenAI to foster reflection, positive thinking, and personalized insights.",
       language: "TypeScript",
@@ -63,6 +75,8 @@ export const content = {
     "Skills: C++, TypeScript, JavaScript, Python, React, Next.js, React Native",
     "",
     "Projects:",
+    "  - SAT Sudoku Solver — SAT-based Sudoku solver and CNF encoding benchmarks (C++)",
+    "  - WLP4 Compiler — Scanner, parser, type checker, and MIPS code generator (C++20)",
     "  - Moodify — AI-powered journaling platform (TypeScript, Next.js, OpenAI)",
     "  - UniConnect — University student connection app (JavaScript)",
     "  - Chess — Chess game with AI opponents (C++)",

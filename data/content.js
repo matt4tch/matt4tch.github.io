@@ -30,6 +30,12 @@ export const content = {
       url: "https://github.com/matt4tch/wlp4-compiler",
     },
     {
+      name: "GPT From Scratch",
+      description: "Educational GPT implementation covering tokenization, embeddings, attention, pretraining, generation, and fine-tuning.",
+      language: "Python",
+      url: "https://github.com/matt4tch/gpt-from-scratch",
+    },
+    {
       name: "Moodify",
       description: "AI-powered journaling platform using Next.js and OpenAI to foster reflection, positive thinking, and personalized insights.",
       language: "TypeScript",
@@ -77,6 +83,7 @@ export const content = {
     "Projects:",
     "  - SAT Sudoku Solver — SAT-based Sudoku solver and CNF encoding benchmarks (C++)",
     "  - WLP4 Compiler — Scanner, parser, type checker, and MIPS code generator (C++20)",
+    "  - GPT From Scratch — Educational GPT implementation with attention, pretraining, and fine-tuning (Python)",
     "  - Moodify — AI-powered journaling platform (TypeScript, Next.js, OpenAI)",
     "  - UniConnect — University student connection app (JavaScript)",
     "  - Chess — Chess game with AI opponents (C++)",

@@ -27,6 +27,7 @@ export const commands = {
       ['welcome', 'Display welcome message'],
       ['about', 'Who I am'],
       ['projects', 'My pinned projects'],
+      ['research', 'My research'],
       ['education', 'My academic background'],
       ['resume', 'View my resume'],
       ['socials', 'My social links'],
@@ -85,6 +86,39 @@ export const commands = {
     lines.push('');
     lines.push('Usage: projects go &lt;number&gt;');
     lines.push('eg: projects go 1');
+
+    return lines.join('<br>');
+  },
+
+  research(args) {
+    if (args[0] === 'go' && args[1]) {
+      const idx = parseInt(args[1], 10) - 1;
+      if (isNaN(idx) || idx < 0 || idx >= content.research.links.length) {
+        return `Invalid research link number. Please enter a number between 1 and ${content.research.links.length}.`;
+      }
+      const link = content.research.links[idx];
+      window.open(link.url, '_blank', 'noopener,noreferrer');
+      return `Opening ${link.name} in a new tab...`;
+    }
+
+    const maxName = Math.max(...content.research.links.map((link) => link.name.length));
+    const lines = [
+      `<span style="color: var(--accent-color)">${content.research.name}</span>`,
+      content.research.description,
+      '',
+    ];
+
+    content.research.links.forEach((link, i) => {
+      const num = `${i + 1}.`;
+      const name = link.name.padEnd(maxName + 2);
+      lines.push(
+        `  ${num} <a href="${link.url}" target="_blank" rel="noopener noreferrer">${name}</a> ${link.url}`
+      );
+    });
+
+    lines.push('');
+    lines.push('Usage: research go &lt;number&gt;');
+    lines.push('eg: research go 1');
 
     return lines.join('<br>');
   },

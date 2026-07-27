@@ -60,6 +60,15 @@ export const content = {
       url: "https://github.com/matt4tch/Roboadvisor",
     },
   ],
+  research: {
+    name: "Iteration of Linear Differential Operators",
+    description: "A University of Waterloo Directed Research Program project with Jake Edmonstone, mentored by Paul Cusson.",
+    links: [
+      { name: "Repo", url: "https://github.com/matt4tch/drp-spring-2026" },
+      { name: "Slides", url: "https://github.com/matt4tch/drp-spring-2026/blob/main/slides.pdf" },
+      { name: "Write-up", url: "https://github.com/matt4tch/drp-spring-2026/blob/main/drp.pdf" },
+    ],
+  },
   education: {
     university: "University of Waterloo",
     degree: "Joint Honours Computer Science & Pure Mathematics",

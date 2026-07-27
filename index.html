@@ -3,38 +3,98 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Matthew Tchouikine — CS & Pure Math student at the University of Waterloo. Interactive terminal portfolio showcasing projects, skills, and experience.">
-  <title>Matthew Tchouikine | Terminal Portfolio</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>></text></svg>">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link id="theme" rel="stylesheet" href="css/themes/dark.css">
-  <link rel="stylesheet" href="css/main.css">
+  <meta name="description" content="Matthew Tchouikine — CS and Pure Mathematics student at the University of Waterloo.">
+  <title>Matthew Tchouikine</title>
 </head>
 <body>
-  <div id="terminal">
-    <div id="title-bar">
-      <div class="title-bar-dots">
-        <span class="dot dot-red"></span>
-        <span class="dot dot-yellow"></span>
-        <span class="dot dot-green"></span>
-      </div>
-      <div class="title-bar-text">visitor@matt4tch.dev:~</div>
-    </div>
-    <div id="terminal-body">
-      <div id="output"></div>
-      <div id="input-line">
-        <span class="prompt"><span class="prompt-user">visitor</span>@<span class="prompt-host">matt4tch.dev</span>:~$</span>
-        <span id="input-wrapper">
-          <input type="text" id="command-input" autocomplete="off" autofocus spellcheck="false" aria-label="Terminal command input">
-          <span id="cursor-block"></span>
-        </span>
-        <span id="vim-mode"></span>
-      </div>
-    </div>
-  </div>
-  <noscript><p style="padding: 24px; font-family: monospace;">Please enable JavaScript to use this interactive terminal portfolio.</p></noscript>
-  <script type="module" src="js/terminal.js"></script>
+  <header>
+    <h1>Matthew Tchouikine</h1>
+    <p>CS &amp; Pure Math @ University of Waterloo</p>
+    <p><a href="terminal.html">Open the terminal website</a></p>
+  </header>
+
+  <main>
+    <section>
+      <h2>About</h2>
+      <p>
+        I'm a student at the University of Waterloo pursuing a joint degree in
+        Computer Science and Pure Mathematics.
+      </p>
+    </section>
+
+    <section>
+      <h2>Course Notes</h2>
+      <ul>
+        <li><a href="assets/pmath450.pdf">PMATH 450</a> — Lebesgue Integration and Fourier Analysis</li>
+        <li><a href="assets/pmath352.pdf">PMATH 352</a> — Complex Analysis</li>
+        <li><a href="assets/pmath367.pdf">PMATH 367</a> — Rings and Modules</li>
+        <li><a href="assets/pmath347.pdf">PMATH 347</a> — Groups and Rings</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Projects</h2>
+      <ul>
+        <li>
+          <a href="https://github.com/matt4tch/sat-sudoku-solver">SAT Sudoku Solver</a>
+          — C++ Sudoku solver using SAT encoding, MiniSAT, and benchmark comparisons
+          between minimal and extended CNF formulations.
+        </li>
+        <li>
+          <a href="https://github.com/matt4tch/wlp4-compiler">WLP4 Compiler</a>
+          — Standalone C++20 compiler for a small C-like language with scanning, SLR
+          parsing, semantic analysis, and MIPS code generation.
+        </li>
+        <li>
+          <a href="https://github.com/matt4tch/gpt-from-scratch">GPT From Scratch</a>
+          — Educational Python implementation covering tokenization, embeddings,
+          attention, pretraining, generation, and fine-tuning.
+        </li>
+        <li>
+          <a href="https://github.com/matt4tch/Moodify">Moodify</a>
+          — AI-powered journaling platform built with TypeScript, Next.js, and OpenAI
+          for reflection and personalized insights.
+        </li>
+        <li>
+          <a href="https://github.com/matt4tch/UniConnect">UniConnect</a>
+          — JavaScript application that connects university students to a common
+          study area based on their tastes and preferences.
+        </li>
+        <li>
+          <a href="https://github.com/matt4tch/Chess">Chess</a>
+          — C++ chess game with text and graphical displays, customizable modes, and
+          AI opponents.
+        </li>
+        <li>
+          <a href="https://github.com/matt4tch/Roboadvisor">Roboadvisor</a>
+          — Python portfolio optimizer that selects stocks by correlation and
+          volatility.
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Research</h2>
+      <h3>Iteration of Linear Differential Operators</h3>
+      <p>
+        A University of Waterloo Directed Research Program project with Jake
+        Edmonstone, mentored by Paul Cusson.
+      </p>
+      <ul>
+        <li><a href="https://github.com/matt4tch/drp-spring-2026">Repository</a></li>
+        <li><a href="https://github.com/matt4tch/drp-spring-2026/blob/main/slides.pdf">Slides</a></li>
+        <li><a href="https://github.com/matt4tch/drp-spring-2026/blob/main/drp.pdf">Write-up</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <h2>Links</h2>
+    <ul>
+      <li><a href="https://github.com/matt4tch">GitHub</a></li>
+      <li><a href="https://linkedin.com/in/matthew-tchouikine">LinkedIn</a></li>
+      <li><a href="mailto:matthew4.tch@gmail.com">Email</a></li>
+    </ul>
+  </footer>
 </body>
 </html>

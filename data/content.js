@@ -10,7 +10,7 @@ export const content = {
   ],
   about: [
     "Hey! I'm Matthew, a student at the University of Waterloo",
-    "pursuing a joint degree in Computer Science and Pure Mathematics (3B).",
+    "pursuing a double major in Pure Mathematics and Computer Science (4A).",
     "",
     "I'm passionate about C++, currently building a mobile app with Expo",
     "React Native, learning Neovim, and using Typst as a modern LaTeX",
@@ -71,8 +71,8 @@ export const content = {
   },
   education: {
     university: "University of Waterloo",
-    degree: "Joint Honours Computer Science & Pure Mathematics",
-    term: "3B",
+    degree: "Double Major in Pure Mathematics and Computer Science",
+    term: "4A",
   },
   socials: [
     { name: "GitHub", url: "https://github.com/matt4tch" },
@@ -87,9 +87,9 @@ export const content = {
   ],
   resumeSummary: [
     "Matthew Tchouikine",
-    "Joint Honours CS & Pure Mathematics — University of Waterloo (4A)",
+    "Pure Mathematics and Computer Science Double Major — University of Waterloo (4A)",
     "",
-    "Skills: C++, C, Python,",
+    "Skills: C++, C, Python",
     "",
     "Projects:",
     "  - SAT Sudoku Solver — SAT-based Sudoku solver and CNF encoding benchmarks (C++)",

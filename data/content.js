@@ -80,10 +80,11 @@ export const content = {
     { name: "Email", url: "mailto:matthew4.tch@gmail.com" },
   ],
   notes: [
-    { name: "PMATH 450", description: "Measure Theory", file: "assets/pmath450.pdf" },
+    { name: "PMATH 347", description: "Groups and Rings", file: "assets/pmath347.pdf" },
     { name: "PMATH 352", description: "Complex Analysis", file: "assets/pmath352.pdf" },
     { name: "PMATH 367", description: "Topology", file: "assets/pmath367.pdf" },
-    { name: "PMATH 347", description: "Groups and Rings", file: "assets/pmath347.pdf" },
+    { name: "CS 350", description: "Operating Systems", file: "assets/cs350.pdf" },
+    { name: "PMATH 450", description: "Measure Theory", file: "assets/pmath450.pdf" },
   ],
   resumeSummary: [
     "Matthew Tchouikine",

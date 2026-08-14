@@ -1,7 +1,8 @@
-COURSES := pmath347 pmath352 pmath367 pmath450
+COURSES := pmath347 pmath352 pmath367 cs350 pmath450
 PDFS := $(addprefix assets/,$(addsuffix .pdf,$(COURSES)))
 DEPS := $(addprefix .deps/,$(addsuffix .mk,$(COURSES)))
 
+cs350_SOURCE := /Users/matthew4.tch/uw/s26/cs350/notes.typ
 pmath347_SOURCE := /Users/matthew4.tch/uw/fall-2025/pmath347/notes.typ
 pmath352_SOURCE := /Users/matthew4.tch/uw/s26/pmath352/notes.typ
 pmath367_SOURCE := /Users/matthew4.tch/uw/fall-2025/pmath367/notes.typ
